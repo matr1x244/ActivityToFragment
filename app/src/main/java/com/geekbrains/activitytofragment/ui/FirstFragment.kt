@@ -1,11 +1,17 @@
-package com.geekbrains.activitytofragment
+package com.geekbrains.activitytofragment.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.geekbrains.activitytofragment.App
+import com.geekbrains.activitytofragment.R
+import com.geekbrains.activitytofragment.app
 import com.geekbrains.activitytofragment.databinding.FragmentFirstBinding
+import com.geekbrains.activitytofragment.domain.TestRepository
+import com.geekbrains.activitytofragment.recyclerView.TestingAdapters
 
 class FirstFragment : Fragment() {
 
@@ -15,6 +21,9 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
+
+    private val testingAdapters = TestingAdapters() // задаем адаптер
+    private val testRepository: TestRepository by lazy { app.testRepository } // получаем из App обязательно "by lazy" только по запросу
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +38,15 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonFirst()
+        recyclerView()
+    }
+
+    private fun recyclerView() {
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = testingAdapters // конектим адаптер
+        }
+        testingAdapters.testListData = testRepository.getText().toMutableList() // подцепляем данные
     }
 
     private fun buttonFirst() {

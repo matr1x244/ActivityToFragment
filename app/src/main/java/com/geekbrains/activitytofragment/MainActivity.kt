@@ -3,6 +3,7 @@ package com.geekbrains.activitytofragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.geekbrains.activitytofragment.databinding.ActivityMainBinding
+import com.geekbrains.activitytofragment.ui.FirstFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container_main_activity, FirstFragment.newInstance())
                 .commitNow()
         }
+
 
 //        buttonMain()
     }
