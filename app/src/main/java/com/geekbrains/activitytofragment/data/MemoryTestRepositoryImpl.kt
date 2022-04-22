@@ -6,7 +6,7 @@ import java.util.*
 
 class MemoryTestRepositoryImpl : TestRepository {
 
-    override fun getText(): List<TestEntityData> {
+    override fun getTextFun(): List<TestEntityData> {
         return listOf(
             TestEntityData(generateId(), "0 text test", 0),
             TestEntityData(generateId(), "1 text test", 1),

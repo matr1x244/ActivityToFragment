@@ -5,14 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.activitytofragment.domain.TestEntityData
 
-class TestingAdapters : RecyclerView.Adapter<TestingViewHolder>(){
+class TestingAdapters : RecyclerView.Adapter<TestingViewHolder>() {
 
     var testListData: MutableList<TestEntityData> = mutableListOf()
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+
+//        @SuppressLint("NotifyDataSetChanged")
+//        set(value) {
+//            field = value
+//            notifyDataSetChanged()
+//        }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(newList: List<TestEntityData>) {
+        testListData.clear()
+        testListData.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestingViewHolder {
         return TestingViewHolder.createView(parent)

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.geekbrains.activitytofragment.App
 import com.geekbrains.activitytofragment.R
 import com.geekbrains.activitytofragment.app
 import com.geekbrains.activitytofragment.databinding.FragmentFirstBinding
@@ -46,7 +45,8 @@ class FirstFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = testingAdapters // конектим адаптер
         }
-        testingAdapters.testListData = testRepository.getText().toMutableList() // подцепляем данные
+        testingAdapters.setData(testRepository.getTextFun()) // подцепляем данные, если работаем через fun setData в TestingAdapters
+//      testingAdapters.testListData = testRepository.getTextFun().toMutableList() // подцепляем данные, если использовать в TestingAdapters set(value) {field = value  notifyDataSetChanged()}
     }
 
     private fun buttonFirst() {
