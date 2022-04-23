@@ -16,7 +16,7 @@ class SecondFragment : Fragment() {
     companion object {
         const val ARGS_KEY = "ARGS_KEY"
 
-        fun newInstance(testEntityData: TestEntityData) = SecondFragment().apply {
+        fun newInstance(testEntityData: TestEntityData?) = SecondFragment().apply {
             arguments = Bundle()
             arguments?.putParcelable(ARGS_KEY, testEntityData)
         }
@@ -44,13 +44,17 @@ class SecondFragment : Fragment() {
     /*Задаем переданные данные*/
     private fun detailTesting() {
         val test = detailTestingArguments()
-        binding.textTesting.text = test.textId
+        if (test == null) {
+            binding.textTesting.text
+        } else {
+            binding.textTesting.text = test.textId
+        }
     }
 
     /*Передаем ключ с FirstFragment*/
-    private fun detailTestingArguments(): TestEntityData {
+    private fun detailTestingArguments(): TestEntityData? {
         return arguments?.getParcelable(ARGS_KEY)
-            ?: throw IllegalStateException("Забыли в аргументы положит ключ !!!")
+//            ?: throw IllegalStateException("Забыли в аргументы положит ключ !!!")
     }
 
     private fun buttonSecond() {
