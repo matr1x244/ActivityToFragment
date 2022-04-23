@@ -59,6 +59,18 @@ class FirstFragment : Fragment() {
 
         buttonFirst()
         recyclerView()
+        buttonReload()
+    }
+
+    private fun buttonReload() {
+        binding.buttonReload.setOnClickListener {
+            activity?.supportFragmentManager?.let { fragment ->
+                fragment.beginTransaction()
+                    .replace(R.id.container_main_activity, FirstFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
     }
 
     private fun recyclerView() {
