@@ -4,8 +4,9 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.activitytofragment.domain.TestEntityData
+import com.geekbrains.activitytofragment.ui.FirstFragment
 
-class TestingAdapters : RecyclerView.Adapter<TestingViewHolder>() {
+class TestingAdapters(private val itemClick : (TestEntityData) -> Unit) : RecyclerView.Adapter<TestingViewHolder>() {
 
     var testListData: MutableList<TestEntityData> = mutableListOf()
 
@@ -27,7 +28,7 @@ class TestingAdapters : RecyclerView.Adapter<TestingViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TestingViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), itemClick) /*добавил кликабельность*/
     }
 
     private fun getItem(position: Int): TestEntityData {

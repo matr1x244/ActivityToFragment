@@ -1,17 +1,25 @@
 package com.geekbrains.activitytofragment.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.activitytofragment.R
 import com.geekbrains.activitytofragment.app
 import com.geekbrains.activitytofragment.databinding.FragmentFirstBinding
+import com.geekbrains.activitytofragment.domain.TestEntityData
 import com.geekbrains.activitytofragment.domain.TestRepository
 import com.geekbrains.activitytofragment.recyclerView.TestingAdapters
 
+/**
+ * Не забудь отнаследовать активити от контроллера
+ */
 class FirstFragment : Fragment() {
 
     companion object {
@@ -21,8 +29,23 @@ class FirstFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
-    private val testingAdapters = TestingAdapters() // задаем адаптер
+    /*задаем адаптер*/
+    private var testingAdapters = TestingAdapters {
+        controller.openSecondFragment(it) // подключли контроллер к адаптеру на кликабельность
+        Toast.makeText(context, it.textView, Toast.LENGTH_SHORT).show()
+    }
+
     private val testRepository: TestRepository by lazy { app.testRepository } // получаем из App обязательно "by lazy" только по запросу
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        /*Проверяем есть ли у активити Controller*/
+        if (activity !is Controller) {
+            throw IllegalStateException("Activity должна наследоваться от FirstFragment.Controller")
+        }
+    }
+
+    private val controller by lazy { activity as Controller } // проверяем по запросу controller
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,15 +70,16 @@ class FirstFragment : Fragment() {
         }
         testingAdapters.setData(testRepository.getTextFun()) // подцепляем данные, если работаем через fun setData в TestingAdapters
 //      testingAdapters.testListData = testRepository.getTextFun().toMutableList() // подцепляем данные, если использовать в TestingAdapters set(value) {field = value  notifyDataSetChanged()}
+
     }
 
     private fun buttonFirst() {
         binding.buttonFirst.setOnClickListener {
             activity?.supportFragmentManager?.let { fragment ->
                 fragment.beginTransaction()
-                    .replace(R.id.container_main_activity, SecondFragment.newInstance())
-                    .addToBackStack(null)
-                    .commit()
+                .replace(R.id.container_main_activity, SecondFragment.newInstance(testEntityData = TestEntityData("","",0)))
+                .addToBackStack(null)
+                .commit()
             }
         }
     }
@@ -63,5 +87,10 @@ class FirstFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    /*Интерфейс контроля для кликабельности с MainActivity*/
+    interface Controller {
+        fun openSecondFragment(testData: TestEntityData)
     }
 }

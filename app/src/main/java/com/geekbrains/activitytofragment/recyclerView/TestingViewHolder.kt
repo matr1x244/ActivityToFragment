@@ -19,10 +19,13 @@ class TestingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
-    fun bind(item: TestEntityData) {
+    fun bind(item: TestEntityData, listener: TestEntityData.() -> Unit) {
         binding.itemTextNull.text = item.textId
         binding.itemTextOne.text = item.textNumber.toString()
         binding.itemTextTwo.text = item.textView
+        binding.root.setOnClickListener {
+            listener.invoke(item) /*listener слушать события*/
+        }
     }
 
 }

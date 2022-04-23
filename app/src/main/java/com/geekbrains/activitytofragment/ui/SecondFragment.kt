@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.geekbrains.activitytofragment.MainActivity
 import com.geekbrains.activitytofragment.databinding.FragmentSecondBinding
+import com.geekbrains.activitytofragment.domain.TestEntityData
 
 
 class SecondFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SecondFragment()
+        const val ARGS_KEY = "ARGS_KEY"
+
+        fun newInstance(testEntityData: TestEntityData) = SecondFragment().apply {
+            arguments = Bundle()
+            arguments?.putParcelable(ARGS_KEY, testEntityData)
+        }
     }
 
     private var _binding: FragmentSecondBinding? = null
@@ -32,6 +38,19 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonSecond()
+        detailTesting()
+    }
+
+    /*Задаем переданные данные*/
+    private fun detailTesting() {
+        val test = detailTestingArguments()
+        binding.textTesting.text = test.textId
+    }
+
+    /*Передаем ключ с FirstFragment*/
+    private fun detailTestingArguments(): TestEntityData {
+        return arguments?.getParcelable(ARGS_KEY)
+            ?: throw IllegalStateException("Забыли в аргументы положит ключ !!!")
     }
 
     private fun buttonSecond() {
@@ -45,4 +64,5 @@ class SecondFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
