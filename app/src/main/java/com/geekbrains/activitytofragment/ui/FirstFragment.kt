@@ -56,6 +56,7 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setRetainInstance(true) // простое решение сохранение состояние фрагмента, но работает не всегда
 
         buttonFirst()
         recyclerView()
