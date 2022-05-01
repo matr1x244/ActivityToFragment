@@ -2,13 +2,15 @@ package com.geekbrains.activitytofragment
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.geekbrains.activitytofragment.databinding.ActivityMainBinding
+import com.geekbrains.activitytofragment.domain.Controller
 import com.geekbrains.activitytofragment.domain.TestEntityData
 import com.geekbrains.activitytofragment.ui.FirstFragment
 import com.geekbrains.activitytofragment.ui.SecondFragment
 
 
-class MainActivity : AppCompatActivity(), FirstFragment.Controller {
+class MainActivity : AppCompatActivity(), Controller {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -16,7 +18,10 @@ class MainActivity : AppCompatActivity(), FirstFragment.Controller {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         if (savedInstanceState == null) {
+            val frag: Fragment = FirstFragment()
+            frag.retainInstance = true
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container_main_activity, FirstFragment.newInstance())
                 .commitNow()

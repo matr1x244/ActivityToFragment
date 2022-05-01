@@ -9,7 +9,7 @@ import com.geekbrains.activitytofragment.ui.FirstFragment
 class TestingAdapters(private val itemClick : (TestEntityData) -> Unit) : RecyclerView.Adapter<TestingViewHolder>() {
 
     var testListData: MutableList<TestEntityData> = mutableListOf()
-
+//
 //        @SuppressLint("NotifyDataSetChanged")
 //        set(value) {
 //            field = value

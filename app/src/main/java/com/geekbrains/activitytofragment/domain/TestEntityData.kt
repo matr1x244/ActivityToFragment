@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TestEntityData(
-    val textId: String,
+    var textId: String,
     val textView: String,
     val textNumber: Int
 ) : Parcelable

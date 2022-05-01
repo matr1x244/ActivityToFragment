@@ -3,14 +3,16 @@ package com.geekbrains.activitytofragment
 import android.app.Application
 import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.activitytofragment.data.MemoryTestRepositoryImpl
 import com.geekbrains.activitytofragment.domain.TestRepository
+import com.geekbrains.activitytofragment.utilsSave.PresenterStore
 
 
 class App : Application() {
 
     val testRepository: TestRepository by lazy { MemoryTestRepositoryImpl() } // обязательно by lazy
+
+    val presenterStore by lazy { PresenterStore() } //
 }
 
 /**
