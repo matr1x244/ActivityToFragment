@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +33,8 @@ class FirstFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var presenter: Presenter
+
+    private lateinit var buttonFirst: Button
 
     /*задаем адаптер*/
     private var testingAdapters = TestingAdapters {
@@ -61,6 +65,7 @@ class FirstFragment : Fragment() {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
 
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,6 +84,7 @@ class FirstFragment : Fragment() {
             it.textId
         }
 
+        buttonFirst = view.findViewById(R.id.button_first)
 
         buttonFirst()
         recyclerView()
@@ -112,7 +118,8 @@ class FirstFragment : Fragment() {
     }
 
     private fun buttonFirst() {
-        binding.buttonFirst.setOnClickListener {
+        //buttonFirst = view.findViewById(R.id.button_first) без использования viewBinding
+        buttonFirst.setOnClickListener {
             activity?.supportFragmentManager?.let { fragment ->
                 fragment.beginTransaction()
                 .replace(R.id.container_main_activity, SecondFragment.newInstance(testEntityData = null))

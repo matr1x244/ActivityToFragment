@@ -22,4 +22,7 @@
     <style name="Theme.ActivityToFragment.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ActivityToFragment.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- ДЛЯ API меньше 30 SPLASH SCREEN -->
+    <style name="Theme.NewSplashScreen" parent="Theme.ActivityToFragment" />
 </resources>

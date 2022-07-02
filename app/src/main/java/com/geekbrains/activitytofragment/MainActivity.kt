@@ -1,7 +1,13 @@
 package com.geekbrains.activitytofragment
 
+import android.animation.ObjectAnimator
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.geekbrains.activitytofragment.databinding.ActivityMainBinding
 import com.geekbrains.activitytofragment.domain.Controller
@@ -17,6 +23,7 @@ class MainActivity : AppCompatActivity(), Controller {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        startSplash()
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
@@ -28,6 +35,27 @@ class MainActivity : AppCompatActivity(), Controller {
         }
 
 //        buttonMain()
+    }
+
+    private fun startSplash() {
+        val version = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+        if (version) {
+            val screen = installSplashScreen()
+            screen.setOnExitAnimationListener { screenProvider ->
+                ObjectAnimator.ofFloat(
+                    screenProvider.view,
+                    View.TRANSLATION_X,
+                    0f,
+                    screenProvider.view.height.toFloat()
+                ).apply {
+                    duration = 5000
+                    interpolator = AnticipateInterpolator()
+                    doOnEnd {
+                        screenProvider.remove()
+                    }
+                }.start()
+            }
+        }
     }
 
     override fun openSecondFragment(testData: TestEntityData) {
