@@ -15,6 +15,7 @@ import com.geekbrains.activitytofragment.databinding.FragmentFirstBinding
 import com.geekbrains.activitytofragment.domain.Controller
 import com.geekbrains.activitytofragment.domain.TestRepository
 import com.geekbrains.activitytofragment.recyclerView.TestingAdapters
+import com.geekbrains.activitytofragment.ui.ThreeFragmentEmail.ThreeFragment
 
 /**
  * Не забудь отнаследовать активити от контроллера
@@ -65,6 +66,7 @@ class FirstFragment : Fragment() {
         buttonFirst()
         recyclerView()
         buttonReload()
+        buttonFragmentEmail()
     }
 
     private fun buttonReload() {
@@ -102,6 +104,18 @@ class FirstFragment : Fragment() {
             }
         }
     }
+
+    private fun buttonFragmentEmail() {
+        binding.buttonEmailFragment.setOnClickListener {
+            activity?.supportFragmentManager?.let { fragment ->
+                fragment.beginTransaction()
+                    .replace(R.id.container_main_activity, ThreeFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
