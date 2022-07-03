@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), Controller {
                 .commitNow()
         }
 
-//        buttonMain()
+        buttonMain()
     }
 
     private fun startSplash() {
@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity(), Controller {
             .commit()
     }
 
-//    private fun buttonMain() {
-//        binding.buttonMain.setOnClickListener {
-//            supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.container_main_activity, FirstFragment.newInstance())
-//                .commit()
-//        }
-//    }
+    private fun buttonMain() {
+        binding.buttonMain.setOnClickListener {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container_main_activity, FirstFragment.newInstance())
+                .commit()
+        }
+    }
 }
