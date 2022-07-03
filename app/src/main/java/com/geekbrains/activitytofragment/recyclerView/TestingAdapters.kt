@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.activitytofragment.domain.TestEntityData
-import com.geekbrains.activitytofragment.ui.FirstFragment
 
-class TestingAdapters(private val itemClick : (TestEntityData) -> Unit) : RecyclerView.Adapter<TestingViewHolder>() {
+class TestingAdapters(private val itemClick: (TestEntityData) -> Unit) :
+    RecyclerView.Adapter<TestingViewHolder>() {
 
     var testListData: MutableList<TestEntityData> = mutableListOf()
 //

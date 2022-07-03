@@ -80,7 +80,7 @@ class FirstFragment : Fragment() {
 
     private fun recyclerView() {
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(app)
             adapter = testingAdapters // конектим адаптер
         }
         testingAdapters.setData(testRepository.getTextFun()) // подцепляем данные, если работаем через fun setData в TestingAdapters

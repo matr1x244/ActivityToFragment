@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.activitytofragment.R
-import com.geekbrains.activitytofragment.domain.TestEntityData
 import com.geekbrains.activitytofragment.databinding.RecyclerItemBinding
+import com.geekbrains.activitytofragment.domain.TestEntityData
 
 class TestingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

@@ -30,6 +30,7 @@
                     android:layout_height="90dp"
                     android:layout_gravity="center_horizontal"
                     android:cropToPadding="true"
+                    app:srcCompat="@android:drawable/ic_menu_sort_alphabetically"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -40,11 +41,10 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="text_0"
+                    android:text="item_text_null"
                     android:textColor="@color/black"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toTopOf="@+id/item_text_one"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.08"
                     app:layout_constraintStart_toEndOf="@+id/avatar" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -52,10 +52,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="36dp"
-                    android:text="text_1"
+                    android:text="item_text_one"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.08"
                     app:layout_constraintStart_toEndOf="@+id/avatar" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -63,10 +62,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="text_2"
+                    android:text="item_text_two"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.08"
                     app:layout_constraintStart_toEndOf="@+id/avatar" />
 
 
